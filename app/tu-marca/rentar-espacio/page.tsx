@@ -224,6 +224,32 @@ export default function RentarEspacioPage() {
                   Consultar disponibilidad
                 </a>
               </div>
+
+              <section
+                id="contacto"
+                className="scroll-mt-24 mt-12 rounded-3xl border border-blue-100 bg-white p-6 sm:p-8 text-left shadow-sm"
+              >
+                <h2 className="text-xl sm:text-2xl font-extrabold text-[#0a1e64] tracking-tight">
+                  Consultar disponibilidad
+                </h2>
+                <p className="mt-3 text-sm sm:text-base text-gray-700 leading-relaxed">
+                  Cuéntanos qué formato te interesa y revisa nuestras opciones de acompañamiento para avanzar con tu solicitud comercial.
+                </p>
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  <a
+                    href="/centro-ayuda"
+                    className="inline-flex items-center justify-center rounded-full bg-[#0a1e64] px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-[#071649]"
+                  >
+                    Ir al centro de ayuda
+                  </a>
+                  <a
+                    href="/tu-marca#quienes-somos"
+                    className="inline-flex items-center justify-center rounded-full border border-[#0a1e64]/20 px-6 py-3 text-sm font-semibold text-[#0a1e64] transition-all duration-200 hover:bg-blue-50"
+                  >
+                    Conocer Imperial Plaza
+                  </a>
+                </div>
+              </section>
             </div>
           </div>
         </main>

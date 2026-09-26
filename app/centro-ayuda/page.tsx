@@ -16,7 +16,10 @@ const faqs: FaqItem[] = [
     answer: (
       <span>
         Te invitamos a completar el formulario en la opción{" "}
-        <a href="/tu-marca/rentar-espacio" className="font-semibold text-[#0d47a1] hover:underline">
+        <a
+          href="/tu-marca/rentar-espacio#contacto"
+          className="font-semibold text-[#0d47a1] hover:underline"
+        >
           &apos;Consultar disponibilidad&apos;
         </a>{" "}
         para que alguno de nuestros ejecutivos comerciales pueda ponerse en contacto contigo y brindarte toda la información.
