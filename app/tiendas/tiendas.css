@@ -1,3 +1,8 @@
+/* =================================
+   IMPERIAL PLAZA - TIENDAS
+   ANIMACIONES Y RESPONSIVE
+   ================================= */
+
 .finder {
   animation: pageEnter 0.7s ease-out;
 }
@@ -14,22 +19,126 @@
   }
 }
 
+/* =================================
+   FILA DE FILTROS
+   ================================= */
+
+.filter-row {
+  width: 100%;
+
+  display: grid;
+
+  /*
+    Botones: 270px
+    Separador: 1px
+    Buscador: ocupa el espacio restante
+  */
+  grid-template-columns: 270px 1px minmax(350px, 1fr);
+
+  align-items: center;
+
+  column-gap: 18px;
+}
+
+/* =================================
+   TABS
+   ================================= */
+
+.tabs {
+  width: 270px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  flex-shrink: 0;
+}
+
 .tabs button {
+  width: 129px;
+  min-width: 129px;
+
+  height: 62px;
+
+  padding: 0 12px;
+
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  white-space: nowrap;
+
+  font-size: 0.92rem;
+  font-weight: 800;
+
+  cursor: pointer;
+
   transition:
     transform 0.25s ease,
     background 0.25s ease,
-    color 0.25s ease;
+    color 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .tabs button:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.1);
 }
 
 .tabs button:active {
-  transform: scale(0.96);
+  transform: scale(0.97);
 }
 
+/* BOTÓN SELECCIONADO */
+
+.tabs button.selected {
+  background: linear-gradient(135deg, #0ea5d9, #10b8b0);
+
+  color: white;
+
+  border-color: transparent;
+
+  box-shadow: 0 10px 22px rgba(14, 165, 217, 0.2);
+}
+
+/* ICONOS DE LOS TABS */
+
+.tabs button svg {
+  width: 20px;
+  height: 20px;
+
+  flex-shrink: 0;
+}
+
+/* =================================
+   DIVISOR
+   ================================= */
+
+.divider {
+  width: 1px;
+  height: 62px;
+
+  background: rgba(15, 23, 42, 0.1);
+}
+
+/* =================================
+   BUSCADOR
+   ================================= */
+
 .search-box {
+  width: 100%;
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease;
@@ -40,6 +149,15 @@
 
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 }
+
+.search-box input {
+  min-width: 0;
+  flex: 1;
+}
+
+/* =================================
+   TARJETAS
+   ================================= */
 
 .result-card {
   animation: cardEnter 0.55s ease both;
@@ -61,11 +179,19 @@
   }
 }
 
+/* =================================
+   HOVER TARJETAS
+   ================================= */
+
 .result-card:hover {
   transform: translateY(-8px);
 
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
 }
+
+/* =================================
+   ANIMACIÓN ESCALONADA
+   ================================= */
 
 .result-card:nth-child(1) {
   animation-delay: 0.05s;
@@ -99,6 +225,18 @@
   animation-delay: 0.4s;
 }
 
+.result-card:nth-child(9) {
+  animation-delay: 0.45s;
+}
+
+.result-card:nth-child(10) {
+  animation-delay: 0.5s;
+}
+
+/* =================================
+   LOGOS
+   ================================= */
+
 .store-logo {
   transition: transform 0.35s ease;
 }
@@ -106,6 +244,10 @@
 .result-card:hover .store-logo {
   transform: scale(1.06);
 }
+
+/* =================================
+   CATEGORÍAS
+   ================================= */
 
 .category-art {
   transition: transform 0.35s ease;
@@ -123,6 +265,10 @@
   transform: rotate(-5deg) scale(1.08);
 }
 
+/* =================================
+   UBICACIÓN
+   ================================= */
+
 .card-footer svg {
   transition: transform 0.25s ease;
 }
@@ -131,12 +277,132 @@
   transform: translateY(-3px);
 }
 
+/* =================================
+   ACCESIBILIDAD
+   ================================= */
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+
     animation-iteration-count: 1 !important;
+
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* =================================
+   TABLET
+   ================================= */
+
+@media (max-width: 900px) {
+  .filter-row {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 14px;
+  }
+
+  .tabs {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+  }
+
+  .tabs button {
+    width: 100%;
+    min-width: 0;
+
+    height: 58px;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .search-box {
+    width: 100%;
+
+    min-height: 54px;
+  }
+
+  .search-box input {
+    width: 100%;
+
+    min-width: 0;
+  }
+}
+
+/* =================================
+   CELULAR
+   ================================= */
+
+@media (max-width: 600px) {
+  .finder {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .filter-row {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 14px;
+  }
+
+  .tabs {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+  }
+
+  .tabs button {
+    width: 100%;
+
+    min-width: 0;
+
+    min-height: 56px;
+
+    height: 56px;
+
+    padding: 0 8px;
+
+    font-size: 0.88rem;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .search-box {
+    width: 100%;
+
+    min-height: 52px;
+
+    height: 52px;
+  }
+
+  .search-box input {
+    width: 100%;
+
+    min-width: 0;
   }
 }

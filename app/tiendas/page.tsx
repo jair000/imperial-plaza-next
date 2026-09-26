@@ -1,5 +1,4 @@
 "use client";
-
 import "./tiendas.css";
 import { useMemo, useState, type ReactNode } from "react";
 type Store = { name: string; floor: string; tone: string; logo: string };
