@@ -2,6 +2,8 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import logoImg from "@/public/images/logo.png";
 
 // Enlaces principales del nav
 const navLinks = [
@@ -46,28 +48,13 @@ export default function Navbar() {
             Logo: Enlace libre (href="/"). Modifícalo según desees.
             Imagen en: public/images/logo.png
           */}
-          <Link href="/" aria-label="Imperial Plaza - Inicio" className="shrink-0">
-            <img
-              src="/images/logo.png"
+          <Link href="/" aria-label="Imperial Plaza - Inicio" className="shrink-0 flex items-center">
+            <Image
+              src={logoImg}
               alt="Imperial Plaza"
+              priority
               className="h-9 w-auto object-contain sm:h-10"
-              onError={(e) => {
-                // Fallback elegante mientras agregas tu imagen
-                e.currentTarget.style.display = "none";
-                const fallback = document.getElementById("logo-fallback");
-                if (fallback) fallback.style.display = "flex";
-              }}
             />
-            <span
-              id="logo-fallback"
-              style={{ display: "none" }}
-              className="items-center gap-2 text-xl font-bold tracking-tight text-blue-950"
-            >
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-linear-to-tr from-emerald-500 to-blue-600 text-white font-black text-sm">
-                M
-              </span>
-              Imperial Plaza
-            </span>
           </Link>
 
           {/* Menú enlaces versión Desktop */}

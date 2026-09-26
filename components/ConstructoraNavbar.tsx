@@ -1,14 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { scrollToTarget } from "@/lib/scrollToTarget";
+import logoImg from "@/public/images/logo.png";
 
 export default function ConstructoraNavbar() {
   const pathname = usePathname();
   const router = useRouter();
-  const [showLogoFallback, setShowLogoFallback] = useState(false);
 
   useEffect(() => {
     const targetId = window.location.hash.replace("#", "");
@@ -37,23 +38,13 @@ export default function ConstructoraNavbar() {
     <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white shadow-xs">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         {/* Lado izquierdo: Logo */}
-        <Link href="/tu-marca" aria-label="Imperial Plaza - Inicio" className="shrink-0">
-          {!showLogoFallback ? (
-            <img
-              src="/images/logo.png"
-              alt="Imperial Plaza"
-              className="h-9 w-auto object-contain sm:h-10"
-              onError={() => setShowLogoFallback(true)}
-            />
-          ) : null}
-          <span
-            className={`${showLogoFallback ? "flex" : "hidden"} items-center gap-2 text-xl font-bold tracking-tight text-blue-950`}
-          >
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-linear-to-tr from-emerald-500 to-blue-600 text-white font-black text-sm">
-              P
-            </span>
-            Imperial Plaza
-          </span>
+        <Link href="/tu-marca" aria-label="Imperial Plaza - Inicio" className="shrink-0 flex items-center">
+          <Image
+            src={logoImg}
+            alt="Imperial Plaza"
+            priority
+            className="h-9 w-auto object-contain sm:h-10"
+          />
         </Link>
 
         {/* Lado derecho: Enlaces de navegación */}

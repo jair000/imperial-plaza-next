@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+import logoImg from "@/public/images/logo.png";
 
 export default function Footer() {
   return (
@@ -24,26 +26,11 @@ export default function Footer() {
           {/* Columna 1: Logo y Redes Sociales */}
           <div className="lg:col-span-1 flex flex-col gap-5">
             <Link href="/" className="inline-flex items-center gap-2">
-              <img
-                src="/images/logo.png"
+              <Image
+                src={logoImg}
                 alt="Imperial Plaza"
                 className="h-10 w-auto object-contain"
-                onError={(e) => {
-                  e.currentTarget.style.display = "none";
-                  const fallback = document.getElementById("footer-logo-fallback");
-                  if (fallback) fallback.style.display = "flex";
-                }}
               />
-              <span
-                id="footer-logo-fallback"
-                style={{ display: "none" }}
-                className="items-center gap-2 text-xl font-bold tracking-tight text-white"
-              >
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-white font-black text-sm">
-                  I
-                </span>
-                Imperial Plaza
-              </span>
             </Link>
 
             {/* Iconos de Redes Sociales circulares */}

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Imperial Plaza",
   description: "Centro comercial Imperial Plaza",
   icons: {
-    icon: "/images/logo.png",
+    icon: "/imperial-plaza-next/images/logo.png",
   },
 };
 

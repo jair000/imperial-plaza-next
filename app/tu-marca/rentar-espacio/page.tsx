@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import ConstructoraNavbar from "@/components/ConstructoraNavbar";
 import TuMarcaSidebar from "@/components/TuMarcaSidebar";
 import { scrollToTarget } from "@/lib/scrollToTarget";
@@ -241,18 +242,18 @@ export default function RentarEspacioPage() {
                   Cuéntanos qué formato te interesa y revisa nuestras opciones de acompañamiento para avanzar con tu solicitud comercial.
                 </p>
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                  <a
+                  <Link
                     href="/centro-ayuda"
                     className="inline-flex items-center justify-center rounded-full bg-[#0a1e64] px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-[#071649]"
                   >
                     Ir al centro de ayuda
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/tu-marca#quienes-somos"
                     className="inline-flex items-center justify-center rounded-full border border-[#0a1e64]/20 px-6 py-3 text-sm font-semibold text-[#0a1e64] transition-all duration-200 hover:bg-blue-50"
                   >
                     Conocer Imperial Plaza
-                  </a>
+                  </Link>
                 </div>
               </section>
             </div>

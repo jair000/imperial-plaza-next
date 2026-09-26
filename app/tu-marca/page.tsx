@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import ConstructoraNavbar from "@/components/ConstructoraNavbar";
+import bannerImg from "@/public/images/banner.jpg";
 
 export default function TuMarcaPage() {
   return (
@@ -37,7 +38,7 @@ export default function TuMarcaPage() {
                   {/* Top Left Circle */}
                   <div className="absolute top-0 left-0 w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 border-white/90 shadow-md">
                     <Image
-                      src="/images/banner.jpg"
+                      src={bannerImg}
                       alt="Centro comercial y entorno"
                       fill
                       className="object-cover object-center"
@@ -48,7 +49,7 @@ export default function TuMarcaPage() {
                   {/* Top Right Circle */}
                   <div className="absolute top-2 right-2 w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 border-white/90 shadow-md">
                     <Image
-                      src="/images/banner.jpg"
+                      src={bannerImg}
                       alt="Oportunidades comerciales"
                       fill
                       className="object-cover object-top"
@@ -59,7 +60,7 @@ export default function TuMarcaPage() {
                   {/* Bottom Center / Left overlap Circle */}
                   <div className="absolute bottom-0 left-8 sm:left-10 w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 border-white/90 shadow-lg">
                     <Image
-                      src="/images/banner.jpg"
+                      src={bannerImg}
                       alt="Nuestros centros comerciales"
                       fill
                       className="object-cover object-bottom"

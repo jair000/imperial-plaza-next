@@ -1,15 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
+import Link from "next/link";
 import ConstructoraNavbar from "@/components/ConstructoraNavbar";
 import TuMarcaSidebar from "@/components/TuMarcaSidebar";
 import { scrollToTarget } from "@/lib/scrollToTarget";
+import carteleriaImg from "@/public/images/carteleria-digital.jpg";
+import estaticaImg from "@/public/images/estatica.jpg";
+import activacionesImg from "@/public/images/activaciones.jpg";
 
 interface PublicidadTab {
   id: string;
   label: string;
-  image: string;
+  image: StaticImageData;
   imageAlt: string;
   bullets: string[];
 }
@@ -18,7 +22,7 @@ const tabsData: PublicidadTab[] = [
   {
     id: "carteleria",
     label: "Cartelería digital",
-    image: "/images/carteleria-digital.jpg",
+    image: carteleriaImg,
     imageAlt: "Cartelería digital en centro comercial",
     bullets: [
       "Maximiza tu visibilidad en nuestros centros comerciales usando cartelería digital.",
@@ -29,7 +33,7 @@ const tabsData: PublicidadTab[] = [
   {
     id: "estatica",
     label: "Estática",
-    image: "/images/estatica.jpg",
+    image: estaticaImg,
     imageAlt: "Publicidad estática en estacionamiento y pasillos",
     bullets: [
       "Aprovecha espacios estratégicos.",
@@ -40,7 +44,7 @@ const tabsData: PublicidadTab[] = [
   {
     id: "activaciones",
     label: "Activaciones",
-    image: "/images/activaciones.jpg",
+    image: activacionesImg,
     imageAlt: "Activaciones de marca y experiencias interactivas",
     bullets: [
       "Arriendos temporales de una plaza/espacio atractivo en el centro comercial.",
@@ -175,18 +179,18 @@ export default function PublicitaTuMarcaPage() {
                   Explora el centro de ayuda y revisa la información clave para compartir con nuestro equipo comercial la alternativa publicitaria que mejor se ajuste a tu marca.
                 </p>
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                  <a
+                  <Link
                     href="/centro-ayuda"
                     className="inline-flex items-center justify-center rounded-full bg-[#0a1e64] px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-[#071649]"
                   >
                     Ir al centro de ayuda
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/tu-marca#quienes-somos"
                     className="inline-flex items-center justify-center rounded-full border border-[#0a1e64]/20 px-6 py-3 text-sm font-semibold text-[#0a1e64] transition-all duration-200 hover:bg-blue-50"
                   >
                     Conocer Imperial Plaza
-                  </a>
+                  </Link>
                 </div>
               </section>
             </div>

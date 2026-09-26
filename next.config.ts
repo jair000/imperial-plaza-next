@@ -1,11 +1,21 @@
 import type { NextConfig } from "next";
 
+const basePath = "/imperial-plaza-next";
+
 const nextConfig: NextConfig = {
   output: 'export',                      // Genera los archivos estáticos en la carpeta /out
-  basePath: '/imperial-plaza-next',      // Nombre exacto de tu repositorio en GitHub
+  basePath,                              // Nombre exacto de tu repositorio en GitHub
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
   images: {
     unoptimized: true,                   // Obligatorio para exportación estática en GitHub Pages
-    domains: ["images.unsplash.com"],     // Mantiene la compatibilidad con tus imágenes de Unsplash
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+    ],
   },
 };
 

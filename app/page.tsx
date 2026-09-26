@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { scrollToTarget } from "@/lib/scrollToTarget";
+import bannerImg from "@/public/images/banner.jpg";
 
 export default function Home() {
   const handleScrollToContent = () => {
@@ -20,11 +22,12 @@ export default function Home() {
       {/* ========================================================= */}
       <section className="relative flex h-[calc(100vh-65px)] min-h-[520px] w-full items-center justify-center overflow-hidden bg-slate-950">
         {/* Imagen de fondo (public/images/banner.jpg) */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 scale-105"
-          style={{
-            backgroundImage: "url('/images/banner.jpg')",
-          }}
+        <Image
+          src={bannerImg}
+          alt="Banner Imperial Plaza"
+          fill
+          priority
+          className="object-cover object-center transition-transform duration-1000 scale-105"
         />
 
         {/* Gradiente oscuro cinematográfico */}
