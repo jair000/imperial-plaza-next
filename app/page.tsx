@@ -12,6 +12,12 @@ export default function Home() {
     const navbarHeight = navbar ? navbar.offsetHeight : 0;
     const elementPosition = nextSection.getBoundingClientRect().top;
     const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReducedMotion) {
+      window.scrollTo(0, offsetPosition);
+      return;
+    }
 
     const startPosition = window.pageYOffset;
     const distance = offsetPosition - startPosition;

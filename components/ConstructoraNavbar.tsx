@@ -16,6 +16,13 @@ export default function ConstructoraNavbar() {
     const headerOffset = 90;
     const elementPosition = element.getBoundingClientRect().top;
     const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReducedMotion) {
+      window.scrollTo(0, offsetPosition);
+      window.history.pushState(null, "", `#${targetId}`);
+      return;
+    }
 
     const startPosition = window.pageYOffset;
     const distance = offsetPosition - startPosition;
@@ -43,7 +50,7 @@ export default function ConstructoraNavbar() {
   };
 
   useEffect(() => {
-    if (pathname !== "/tu-marca") {
+    if (!pathname.startsWith("/tu-marca")) {
       return;
     }
 
