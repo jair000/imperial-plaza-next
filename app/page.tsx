@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { scrollToTarget } from "@/lib/scrollToTarget";
 
 export default function Home() {
   const handleScrollToContent = () => {
@@ -10,31 +10,7 @@ export default function Home() {
     // Calcular posición exacta considerando el navbar fijo/sticky si existe
     const navbar = document.querySelector("header");
     const navbarHeight = navbar ? navbar.offsetHeight : 0;
-    const elementPosition = nextSection.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
-
-    const startPosition = window.pageYOffset;
-    const distance = offsetPosition - startPosition;
-    const duration = 1200; // Desplazamiento lento y suave (1.2s)
-    let start: number | null = null;
-
-    // Aceleración y desaceleración fluida tipo cine
-    const easeInOutCubic = (t: number) =>
-      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-
-    const step = (timestamp: number) => {
-      if (!start) start = timestamp;
-      const progress = Math.min((timestamp - start) / duration, 1);
-      const ease = easeInOutCubic(progress);
-
-      window.scrollTo(0, startPosition + distance * ease);
-
-      if (progress < 1) {
-        window.requestAnimationFrame(step);
-      }
-    };
-
-    window.requestAnimationFrame(step);
+    scrollToTarget("seccion-explorar", { headerOffset: navbarHeight, updateHash: false });
   };
 
   return (
