@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import ConstructoraNavbar from "@/components/ConstructoraNavbar";
 
 interface FaqItem {
@@ -9,72 +10,74 @@ interface FaqItem {
   answer: React.ReactNode;
 }
 
-const faqs: FaqItem[] = [
-  {
-    id: 1,
-    question: "¿Me pueden enviar un listado de los locales disponibles, las dimensiones y sus respectivos valores?",
-    answer: (
-      <span>
+export default function CentroAyudaPage() {
+  const [openId, setOpenId] = useState<number | null>(1);
+  const router = useRouter();
+
+  const faqs: FaqItem[] = [
+    {
+      id: 1,
+      question: "¿Me pueden enviar un listado de los locales disponibles, las dimensiones y sus respectivos valores?",
+      answer: (
+        <span>
         Te invitamos a completar el formulario en la opción{" "}
-        <a
-          href="/tu-marca/rentar-espacio#contacto"
+        <button
+          type="button"
+          onClick={() => router.push("/tu-marca/rentar-espacio#contacto")}
           className="font-semibold text-[#0d47a1] hover:underline"
         >
           &apos;Consultar disponibilidad&apos;
-        </a>{" "}
+        </button>{" "}
         para que alguno de nuestros ejecutivos comerciales pueda ponerse en contacto contigo y brindarte toda la información.
-      </span>
-    ),
-  },
-  {
-    id: 2,
-    question: "¿Cuáles son las condiciones del contrato?",
-    answer: (
-      <span>
+        </span>
+      ),
+    },
+    {
+      id: 2,
+      question: "¿Cuáles son las condiciones del contrato?",
+      answer: (
+        <span>
         Los contratos de arrendamiento comercial suelen establecerse por plazos mínimos de 1 a 3 años renovables. Se requiere garantía de cumplimiento, comprobación de solvencia crediticia y constitución de pólizas de seguro vigentes. Las condiciones detalladas se ajustan según la tipología del local y giro de negocio.
-      </span>
-    ),
-  },
-  {
-    id: 3,
-    question: "¿Puedo visitar los espacios disponibles antes de tomar una decisión?",
-    answer: (
-      <span>
+        </span>
+      ),
+    },
+    {
+      id: 3,
+      question: "¿Puedo visitar los espacios disponibles antes de tomar una decisión?",
+      answer: (
+        <span>
         ¡Por supuesto! Puedes coordinar una visita guiada con nuestro equipo comercial para conocer las ubicaciones exactas, flujos peatonales, acometidas de servicios y áreas de carga antes de formalizar cualquier propuesta.
-      </span>
-    ),
-  },
-  {
-    id: 4,
-    question: "¿Si ingreso al centro comercial, puedo tener apoyo de marketing?",
-    answer: (
-      <span>
+        </span>
+      ),
+    },
+    {
+      id: 4,
+      question: "¿Si ingreso al centro comercial, puedo tener apoyo de marketing?",
+      answer: (
+        <span>
         Sí, todas las marcas locatarias forman parte de nuestras campañas generales de difusión, activación de eventos en pasillos, presencia en nuestras pantallas publicitarias digitales, directorio web y publicaciones destacadas en redes sociales institucionales.
-      </span>
-    ),
-  },
-  {
-    id: 5,
-    question: "¿Cuál es el proceso que debo seguir para rentar un espacio en un Centro Comercial?",
-    answer: (
-      <span>
+        </span>
+      ),
+    },
+    {
+      id: 5,
+      question: "¿Cuál es el proceso que debo seguir para rentar un espacio en un Centro Comercial?",
+      answer: (
+        <span>
         El proceso inicia enviando tu solicitud a través de nuestro formulario en línea o contactando a nuestro equipo. Posteriormente evaluamos tu concepto de marca, te presentamos las opciones disponibles, coordinamos la visita técnica, se aprueba la propuesta comercial y legal, y finalmente se procede a la firma y adecuación del local.
-      </span>
-    ),
-  },
-  {
-    id: 6,
-    question: "¿Cuál es el costo de rentar un local, módulo o stand de feria?",
-    answer: (
-      <span>
+        </span>
+      ),
+    },
+    {
+      id: 6,
+      question: "¿Cuál es el costo de rentar un local, módulo o stand de feria?",
+      answer: (
+        <span>
         El costo varía en función de los metros cuadrados, la ubicación estratégica dentro del centro comercial (planta baja, pasillo central, plazoleta de comidas) y la modalidad (local permanente, isla/módulo o feria temporal). Contáctanos para enviarte una cotización personalizada según las necesidades de tu marca.
-      </span>
-    ),
-  },
-];
-
-export default function CentroAyudaPage() {
-  const [openId, setOpenId] = useState<number | null>(1);
+        </span>
+      ),
+    },
+  ];
 
   const toggleFaq = (id: number) => {
     setOpenId((prev) => (prev === id ? null : id));
