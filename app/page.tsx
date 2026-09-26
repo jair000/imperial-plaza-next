@@ -1,6 +1,42 @@
+"use client";
+
 import Link from "next/link";
 
 export default function Home() {
+  const handleScrollToContent = () => {
+    const nextSection = document.getElementById("seccion-explorar");
+    if (!nextSection) return;
+
+    // Calcular posición exacta considerando el navbar fijo/sticky si existe
+    const navbar = document.querySelector("header");
+    const navbarHeight = navbar ? navbar.offsetHeight : 0;
+    const elementPosition = nextSection.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+    const startPosition = window.pageYOffset;
+    const distance = offsetPosition - startPosition;
+    const duration = 1200; // Desplazamiento lento y suave (1.2s)
+    let start: number | null = null;
+
+    // Aceleración y desaceleración fluida tipo cine
+    const easeInOutCubic = (t: number) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    const step = (timestamp: number) => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const ease = easeInOutCubic(progress);
+
+      window.scrollTo(0, startPosition + distance * ease);
+
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+
+    window.requestAnimationFrame(step);
+  };
+
   return (
     <>
       {/* ========================================================= */}
@@ -28,26 +64,35 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Indicador de scroll */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-white/70 animate-bounce">
-          <span className="text-[11px] uppercase tracking-widest font-semibold">Explorar más</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="currentColor"
-            className="h-4 w-4"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-          </svg>
-        </div>
+        {/* Indicador de scroll clickeable */}
+        <button
+          type="button"
+          onClick={handleScrollToContent}
+          aria-label="Desplazarse a la siguiente sección"
+          className="group absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5 text-white/70 hover:text-white transition-all cursor-pointer focus:outline-none"
+        >
+          <span className="text-[11px] uppercase tracking-widest font-semibold drop-shadow transition-transform group-hover:translate-y-0.5">
+            Explorar más
+          </span>
+          <div className="flex items-center justify-center rounded-full p-1 transition-all group-hover:bg-white/10 animate-bounce">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="h-4 w-4 drop-shadow"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+            </svg>
+          </div>
+        </button>
       </section>
 
       {/* ========================================================= */}
       {/* 2. SECCIÓN: ¿Qué estás buscando? + Categorías            */}
       {/* ========================================================= */}
-      <section className="w-full bg-[#f8f9fa] py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-100">
+      <section id="seccion-explorar" className="w-full bg-[#f8f9fa] py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-100">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-[#111827]">
             ¿Qué estás buscando?
