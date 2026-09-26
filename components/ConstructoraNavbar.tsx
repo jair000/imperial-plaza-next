@@ -11,10 +11,6 @@ export default function ConstructoraNavbar() {
   const [showLogoFallback, setShowLogoFallback] = useState(false);
 
   useEffect(() => {
-    if (!pathname.startsWith("/tu-marca")) {
-      return;
-    }
-
     const targetId = window.location.hash.replace("#", "");
     if (!targetId) {
       return;
