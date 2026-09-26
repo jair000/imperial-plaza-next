@@ -3,51 +3,12 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { scrollToTarget } from "@/lib/scrollToTarget";
 
 export default function ConstructoraNavbar() {
   const pathname = usePathname();
   const router = useRouter();
   const [showLogoFallback, setShowLogoFallback] = useState(false);
-
-  const scrollToTarget = (targetId: string) => {
-    const element = document.getElementById(targetId);
-    if (!element) return;
-
-    const headerOffset = 90;
-    const elementPosition = element.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (prefersReducedMotion) {
-      window.scrollTo(0, offsetPosition);
-      window.history.pushState(null, "", `#${targetId}`);
-      return;
-    }
-
-    const startPosition = window.pageYOffset;
-    const distance = offsetPosition - startPosition;
-    const duration = 1200; // 1.2 segundos para una bajada suave y lenta
-    let start: number | null = null;
-
-    const easeInOutCubic = (t: number) =>
-      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-
-    const step = (timestamp: number) => {
-      if (!start) start = timestamp;
-      const progress = Math.min((timestamp - start) / duration, 1);
-      const ease = easeInOutCubic(progress);
-
-      window.scrollTo(0, startPosition + distance * ease);
-
-      if (progress < 1) {
-        window.requestAnimationFrame(step);
-      } else {
-        window.history.pushState(null, "", `#${targetId}`);
-      }
-    };
-
-    window.requestAnimationFrame(step);
-  };
 
   useEffect(() => {
     if (!pathname.startsWith("/tu-marca")) {
@@ -60,7 +21,7 @@ export default function ConstructoraNavbar() {
     }
 
     const frame = window.requestAnimationFrame(() => {
-      scrollToTarget(targetId);
+      scrollToTarget(targetId, { headerOffset: 90 });
     });
 
     return () => window.cancelAnimationFrame(frame);
@@ -70,7 +31,7 @@ export default function ConstructoraNavbar() {
     e.preventDefault();
 
     if (pathname === "/tu-marca") {
-      scrollToTarget(targetId);
+      scrollToTarget(targetId, { headerOffset: 90 });
     } else {
       router.push(`/tu-marca#${targetId}`);
     }

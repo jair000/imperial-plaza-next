@@ -3,6 +3,7 @@
 import { useState } from "react";
 import ConstructoraNavbar from "@/components/ConstructoraNavbar";
 import TuMarcaSidebar from "@/components/TuMarcaSidebar";
+import { scrollToTarget } from "@/lib/scrollToTarget";
 
 interface TabData {
   id: string;
@@ -219,6 +220,10 @@ export default function RentarEspacioPage() {
               <div className="text-center sm:text-center">
                 <a
                   href="#contacto"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToTarget("contacto", { headerOffset: 90 });
+                  }}
                   className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-[#0a1e64] text-white font-semibold text-sm sm:text-base shadow-md hover:bg-[#071649] hover:shadow-lg transition-all duration-200 cursor-pointer"
                 >
                   Consultar disponibilidad

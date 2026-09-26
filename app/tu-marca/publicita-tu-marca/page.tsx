@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import ConstructoraNavbar from "@/components/ConstructoraNavbar";
 import TuMarcaSidebar from "@/components/TuMarcaSidebar";
+import { scrollToTarget } from "@/lib/scrollToTarget";
 
 interface PublicidadTab {
   id: string;
@@ -153,6 +154,10 @@ export default function PublicitaTuMarcaPage() {
               <div className="text-center">
                 <a
                   href="#contacto"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToTarget("contacto", { headerOffset: 90 });
+                  }}
                   className="inline-flex items-center justify-center px-10 py-3.5 rounded-full bg-[#0a1e64] text-white font-semibold text-sm sm:text-base shadow-md hover:bg-[#071649] hover:shadow-lg transition-all duration-200 cursor-pointer"
                 >
                   Consultar ahora
